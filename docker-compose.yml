@@ -13,7 +13,7 @@ services:
       DATABASE_URL: "postgresql://username:password@db:5432/task_manager"
       REDIS_URL: "redis://redis:6379"
     volumes:
-      - .:/app
+      - .:/var/www
     restart: always
 
   db:
