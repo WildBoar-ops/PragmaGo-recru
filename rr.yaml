@@ -1,0 +1,12 @@
+server:
+  command: "php bin/console roadrunner:worker"
+
+http:
+  address: 0.0.0.0:8080
+  middleware: ["headers"]
+  pool:
+    num_workers: 4
+    max_jobs: 100
+
+logs:
+  level: info
