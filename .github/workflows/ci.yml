@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: ${{ secrets.DB_USERNAME }}
+          POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          POSTGRES_DB: task_manager
+        ports:
+          - 5432:5432
+
+      redis:
+        image: redis:6.0
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: pdo, pdo_pgsql
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install
+
+      - name: Run static analysis
+        run: composer stan
+
+      - name: Build Docker image
+        run: docker build -t pragmago-recru .
+
+      - name: Tag Docker image
+        run: docker tag pragmago-recru:latest pragmago-recru:$(date +%Y%m%d%H%M%S)
