@@ -39,7 +39,7 @@ jobs:
           coverage: none
 
       - name: Install dependencies
-        run: composer install --no-dev --optimize-autoloader
+        run: composer install || composer update --lock
 
       - name: Run static analysis
         run: composer stan
