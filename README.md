@@ -3,11 +3,11 @@
    **Author**: Michał Wysocki
    **Date**: 18.03.2025
 
-##Overview##
+## Overview
 
    This is desription about recruitment task and my aproach to it. Documentation contains steps, and technical decisions. 
 
-##Task prerequisites
+## Task prerequisites
    
    - Docker
    - PostgreSQL 15
@@ -16,7 +16,7 @@
    - Composer
    - Symfony CLI (optional)
 
-##Application Containerization##
+## Application Containerization
    
    **Dockerfile**
       The app is containeraized with Docker and RoadRunner instead of PHP-FPM. 
@@ -24,7 +24,7 @@
       Dockerfile does not contain Composer setup for smaller image - this section is moved to the CI Pipeline.
       Redis and PostgreSQL are settled up as separate services in docker-compose.yaml for better scaling, debugging and maintenance. 
 
-##CI/CD##
+## CI/CD
    
    CI System chosen for this task is GitHub Actions. Task will be provided to PragmaGo via GitHub repository, so keeping everything in one platform is easier and less complex. 
    It's prevents more chokepoints for possible errors. Also, I've never used GitHub Actions so it was the opportunity to learn new tool. 
@@ -39,7 +39,7 @@
    - Docker image build
    - Docker image tag
 
-##Security##
+## Security
 
    For security there were no many secrets to use. Those used in the code were settled up for my practice. 
    
