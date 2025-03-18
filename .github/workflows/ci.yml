@@ -39,7 +39,7 @@ jobs:
           coverage: none
 
       - name: Install dependencies
-        run: composer install || composer update --lock
+        run: composer update --lock || composer install
 
       - name: Run static analysis
         run: composer stan
