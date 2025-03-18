@@ -12,9 +12,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
-COPY composer.json composer.lock symfony.lock ./
-RUN composer update --lock
-RUN composer install
+COPY --chown=www-data:www-data composer.json composer.lock symfony.lock ./
+COPY --chown=www-data:www-data vendor/ vendor/
 
 COPY . .
 
