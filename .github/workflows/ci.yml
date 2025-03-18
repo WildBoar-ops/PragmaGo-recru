@@ -38,6 +38,9 @@ jobs:
           extensions: pdo, pdo_pgsql
           coverage: none
 
+      - name: Install Baldinof
+        run: composer require baldinof/roadrunner-bundle
+
       - name: Install dependencies
         run: composer update --lock || composer install
 
